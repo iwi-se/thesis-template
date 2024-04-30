@@ -1,0 +1,40 @@
+\documentclass[a4paper,fontsize=12pt,numbers=noenddot]{scrartcl}
+
+\input{000_preamble}
+\input{010_meta}
+\input{011_acronyms.tex}
+
+\begin{document}
+
+\counterwithin{lstlisting}{section} % Kapitelweise Nummerierung für Listings
+
+\pagestyle{empty}
+\include{020_titlepage}
+\include{021_abstract}
+\pagestyle{fancy}
+\pagenumbering{Roman}
+\include{030_tableofcontents}
+\include{040_listoffigures}
+\include{050_listoftables}
+\include{060_acronyms}
+\include{061_listoflistings}
+\setcounter{saveromanpages}{\arabic{page}}
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+% Sections go here:
+
+\include{sections/01_kompilation}
+\include{sections/02_verwendung}
+% \include{sections/01_einleitung}
+
+
+\cleardoublepage
+\pagenumbering{Roman}
+\setcounter{page}{\thesaveromanpages}
+\include{070_appendix}
+\include{071_bibliography}
+\include{080_declarationofhonour}
+
+\end{document}

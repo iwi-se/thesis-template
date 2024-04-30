@@ -1,0 +1,17 @@
+\section{Kompilation}
+
+\subsection{Voraussetzungen}
+
+Es muss eine \LaTeX-Distribution wie z.B. TeX-Live (https://www.tug.org/texlive/) installiert und im PATH verfügbar sein.
+
+Zum Kompilieren des Projekts verwenden Sie am besten \textit{latexmk}. \textit{latexmk} ist ein Skript, das die Kompilation von \LaTeX-Dateien vereinfacht. Viele Linuxdistributionen haben \textit{latexmk} bereits vorinstalliert. Ansonsten folgen Sie bitte der Installationsanleitung: https://mg.readthedocs.io/latexmk.html.
+
+Da \textit{latexmk} in Perl geschrieben ist, muss Perl installiert sein.
+
+\subsection{Kompilationsbefehl}
+
+Wenn Sie alle Voraussetzungen installiert haben, führen Sie das Kommando \lstinline{latexmk -lualatex main.tex} im Root-Verzeichnis dieses Projekts aus.
+
+\subsection{Verwendung von Visual Studio Code}
+
+Wenn Sie Visual Studio Code zum Verfassen Ihrer Arbeit verwenden, können Sie die Extension \textit{\LaTeX-Workshop} nutzen. Die Extension nutzt standardmäßig ebenfalls \textit{latexmk}, ermöglicht Ihnen aber, das Projekt direkt aus Visual Studio Code heraus zu kompilieren.

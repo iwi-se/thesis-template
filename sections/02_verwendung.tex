@@ -1,0 +1,112 @@
+\section{Verwendung}
+
+\subsection{Titelseite}
+
+Die Daten auf der Titelseite, wie beispielsweise das Thema Ihrer Arbeit, können Sie in der Datei \textit{010\_meta.tex} anpassen. 
+
+\subsection{Anführungszeichen}
+
+Die Verwendung von Anführungszeichen ist in \LaTeX nicht ganz trivial. Verwenden Sie deshalb \lstinline|\q{}|, um Textteile in Anführungszeichen zu setzen. Beispiel: \q{Hallo Welt!}.
+
+\subsection{Schriftschnitte}
+
+Kursiv: \textit{Hallo Welt!} \\
+Fett: \textbf{Hallo Welt!} \\
+Codefont: \lstinline|Hallo Welt!| \\
+
+\subsection{Abkürzungen}
+
+Das Package \textit{glossaries} vereinfacht die Arbeit mit Abkürzungen. Es erzeugt ein Abkürzungsverzeichnis, in dem nur die tatsächlich verwendeten Abkürzungen enthalten sind. Außerdem wird automatisiert die erste Verwendung einer Abkürzung ausgeschrieben, mit der Abkürzung in Klammern. Bei allen weiteren Verwendungen der Abkürzung wird nur die Abkürzung genutzt.
+
+Zunächst listen Sie Ihre benötigten Abkürzungen in \textit{011\_acronyms.tex} auf. Dazu verwenden Sie das Makro \lstinline|\newacronym|. Sie müssen eine Abkürzungsreferenz, die Abkürzung selbst und die ausgeschriebene Form angeben. Optional können Sie den Plural der ausgeschriebenen Form mit angeben. Das ist nötig, wenn die erste Verwendung der Abkürzung im Plural steht. Da die Abkürzung dann in ausgeschriebner Form verwendet wird, kann \LaTeX nicht automatisch die richtige Form ermitteln. 
+
+Die genaue Syntax entnehmen Sie bitte den Beispielen in der oben genannten Datei.
+
+Um die Abkürzungen im Text zu verwenden, haben Sie die folgenden Möglichkeiten:
+
+\begin{enumerate}
+    \item Zur Verwendung der Abkürzung im Singular, nutzen sie \lstinline|\gls|: \gls{json} ist intuitiver als XML. Ab der zweiten Verwendung steht nur noch die Abkürzung: \gls{json} wird häufig für REST-APIs verwendet.
+    \item Zur Verwendung der Abkürzung im Plural, nutzen sie \lstinline|\glspl|: Das Gegenteil von General-Purpose-Programmiersprachen sind \glspl{dsl}.
+\end{enumerate}
+
+
+\subsection{Listings}
+
+Zum Einbinden von Listings können Sie \lstinline|\showlistinglang| (Listings im Haupttext) und \lstinline|\showlistinglangappendix| (Listings im Anhang) nutzen. 
+
+Beide nehmen 4 Parameter entgegen:
+
+\begin{enumerate}
+    \item Caption
+    \item Label zur Referenzierung
+    \item Pfad zur Code-Datei
+    \item Sprache
+\end{enumerate}
+
+Die Sprache kann leer bleiben, um ein generisches Listing anzuzeigen. Für viele Sprachen ist aber ein spezifisches Syntax-Highlighting verfügbar. Außerdem können eigene Regeln für das Syntax-Highlighing definiert werden. Weitere Informationen entnehmen Sie bitte der Dokumentation des Packages: https://ctan.org/pkg/listings.
+
+Das Quellcodeverzeichnis wird automatisch erzeugt. Die Nummerierung folgt dem Schema \textit{Kapitel.Index}. Das dritte Listing in Kapitel 2 würde beispielsweise die Nummer 2.3 erhalten.
+
+\showlistinglang{Eine Haskell-Funktion}{haskell-function}{listings/haskell/coderunnerParser.hs}{Haskell}
+
+Als Beispiel wurde Listing \ref{haskell-function} eingefügt.
+
+Listing \ref{haskell-function} kann mit \lstinline|\ref| im Text referenziert werden, um automatische die korrekte Nummer einzufügen.
+
+\subsection{Literatur}
+
+Die verwendete Literatur listen Sie in der Datei \textit{references.bib} im \textit{BibTeX}-Format auf. Literaturverwaltungsprogramme wie Citavi oder Zotero können im \textit{BibTeX}-Format exportieren. Nutzen Sie diese Möglichkeit.
+
+Um im Fließtext Zitate zu verwenden, haben Sie zwei Möglichkeiten, \lstinline|\cite| und \lstinline|\textcite|.
+
+Mit \lstinline|\textcite| benennnen Sie die Quelle aktiv im Text. Beispiel: \textcite[1]{wildeMethodenspektrumWirtschaftsinformatik2006} stellen Forschungsmethoden der Wirtschaftsinformatik vor. 
+
+\lstinline|\cite| verwenden Sie am Ende eines Satzes, um auszudrücken, dass der Inhalt nicht von Ihnen stammt. Beispiel: Sie gehen unter anderem auf das sogenannte Prototyping ein (vgl. \cite[1]{wildeMethodenspektrumWirtschaftsinformatik2006}). 
+
+Das Literaturverzeichnis wird auf Basis Ihrer Zitationen automatisch erzeugt. Es werden nur die Einträge aus \textit{references.bib} aufgenommen, die auch tatsächlich durch \lstinline|\cite| oder \lstinline|\textcite| referenziert wurden.
+
+\subsection{Abbildungen und Tabellen}
+
+Abbildungen und Tabellen werden wie in \textit{LaTeX} üblich eingebunden und verwendet. Deshalb wird die genaue Verwendung hier nicht erklärt. Trotzdem folgt jeweils ein Beispiel als Anhaltspunkt (Tabelle \ref{parametrisierte-merkmale} und Abbildung \ref{fig:prog-schematic}). Abbildungs- und Tabellenverzeichnis werden automatisch erstellt.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Parametrisiert} & \textbf{Nicht parametrisiert}\\
+        \hline
+        Aufgabenstellung & Titel\\
+        Lösung & Autor\\
+        Korrekturmethode & Einordnung im Curriculum\\
+        Vorgegebener Anteil der Lösung & Form der Lösung\\
+        & Bearbeitungskontext\\
+        \hline
+    \end{tabular}
+    \caption{Parametrisierte und nicht parametrisierte Merkmale von AAPs}
+    \label{parametrisierte-merkmale}
+\end{table}
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{image/generator.png}
+    \caption{Schematische Darstellung des Programmablaufs}
+    \label{fig:prog-schematic}
+\end{figure}
+
+
+\subsection{Referenzierung von Überschriften}
+\label{ref-headlines}
+
+Neben Listings, Abbildungen und Tabellen können auch Überschriften im Text referenziert werden. Dafür wird nach \lstinline|\section|, \lstinline|\subsection|, usw. ein \lstinline|\label| eingefügt. So kann man dann zum Beispiel Kapitel \ref{ref-headlines} referenzieren.
+
+
+\subsection{Abstract und Schlüsselwörter}
+
+Kurzzusammenfassung bzw. Abstract und Schlüsselwörter kommen in die Datei \textit{021\_abstract.tex}.
+
+\subsection{Anhang}
+
+Der Anhang gehört in die Datei \textit{070\_appendix.tex}. Mit \lstinline|\section| kann in Anhang A, B, C, ... aufgeteilt werden.
+
+\subsection{Einbinden von Dateien}
+
+Um Dateien, wie z.B. weitere Sections, einzubinden, müssen sie mit \lstinline|\include| in der Datei \textit{main.tex} hinzugefügt werden.
